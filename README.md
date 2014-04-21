@@ -3,8 +3,10 @@ JavaScript WordPress editor
 
 This can be used to add WordPress editor(php: wp_editor() - http://codex.wordpress.org/Function_Reference/wp_editor) with jQuery. Maybe after click, ajax success, etc.
 
-**Version:** 1.0  
-**Requires:** WordPress 3.3+  
+**Version:** 1.1  
+**Requires:** WordPress 3.9+  
+
+####If you need support for previous versions, you can use the version 1.0
 
 ###Instalation:
   1. Copy into theme dir:
@@ -19,3 +21,10 @@ This can be used to add WordPress editor(php: wp_editor() - http://codex.wordpre
     ```
     jQuery('textarea').wp_editor();
     ```
+
+###Changelog:
+  * ####1.1:
+    - Support for WordPress 3.9+ only
+  
+  * ####1.0:
+    - Initial version  

@@ -3,7 +3,7 @@
  *	JavaScript Wordpress editor
  *	Author: 		Ante Primorac
  *	Author URI: 	http://anteprimorac.from.hr
- *	Version: 		1.0
+ *	Version: 		1.1
  *	License:
  *		Copyright (c) 2013 Ante Primorac
  *		Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -33,7 +33,7 @@
 function js_wp_editor( $settings = array() ) {
 	if ( ! class_exists( '_WP_Editors' ) )
 		require( ABSPATH . WPINC . '/class-wp-editor.php' );
-	$set = _WP_Editors::parse_settings( 'ap[id]', $settings );
+	$set = _WP_Editors::parse_settings( 'apid', $settings );
 
 	if ( !current_user_can( 'upload_files' ) )
 		$set['media_buttons'] = false;
@@ -52,8 +52,14 @@ function js_wp_editor( $settings = array() ) {
 		) );
 	}
 
-	_WP_Editors::editor_settings( 'ap[id]', $set );
+	_WP_Editors::editor_settings( 'apid', $set );
 
-	wp_enqueue_script( 'ap_wpeditor_init', get_template_directory_uri() . '/js/js-wp-editor.min.js', array( 'jquery' ), '1.0', true );
+	$ap_vars = array(
+		'url' => get_home_url(),
+		'includes_url' => includes_url()
+	);
+
+	wp_register_script( 'ap_wpeditor_init', get_template_directory_uri() . '/js/js-wp-editor.js', array( 'jquery' ), '1.1', true );
+	wp_localize_script( 'ap_wpeditor_init', 'ap_vars', $ap_vars );
+	wp_enqueue_script( 'ap_wpeditor_init' );
 }
-?>
